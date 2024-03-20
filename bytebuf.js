@@ -42,6 +42,10 @@ class ByteBuf {
         Array.prototype.push.apply(this.#buffer, array);
     }
 
+    writeBool(value) {
+        this.#buffer.push(value ? 1 : 0);
+    }
+
     readByte() {
         return this.#readBuffer.charCodeAt(this.#position++);
     }
@@ -66,6 +70,10 @@ class ByteBuf {
 
     readString() {
         return this.#decoder.decode(this.read(this.readVarInt()))
+    }
+
+    readBool() {
+        return !!this.readByte();
     }
 
     get length() {
