@@ -46,6 +46,10 @@ class ByteBuf {
         this.#buffer.push(value ? 1 : 0);
     }
 
+    writeByte(value) {
+        this.#buffer.push(value & 255);
+    }
+
     readByte() {
         return this.#readBuffer.charCodeAt(this.#position++);
     }
