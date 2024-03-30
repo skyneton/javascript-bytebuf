@@ -84,6 +84,10 @@ class ByteBuf {
         return this.#buffer.length;
     }
 
+    get readableLength() {
+        return this.#readBuffer.length - this.#position;
+    }
+
     get buf() {
         return this.#buffer;
     }
