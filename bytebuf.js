@@ -5,8 +5,12 @@ class ByteBuf {
     #encoder = new TextEncoder("utf-8");
     #decoder = new TextDecoder("utf-8");
 
-    constructor(readBuffer = null) {
-        this.#readBuffer = readBuffer
+    constructor(readBuffer = undefined) {
+        if (readBuffer instanceof ArrayBuffer) {
+            this.#readBuffer = new Uint8Array(readBuffer);
+        } else if (readBuffer instanceof Uint8Array || typeof readBuffer === 'undefined' || typeof readBuffer === 'string') {
+            this.#readBuffer = readBuffer;
+        }
     }
 
     clear() {
@@ -51,7 +55,9 @@ class ByteBuf {
     }
 
     readByte() {
-        return this.#readBuffer.charCodeAt(this.#position++);
+        if(typeof this.#readBuffer === 'string')
+            return this.#readBuffer.charCodeAt(this.#position++);
+        return this.#readBuffer[this.#position++];
     }
 
     read(count) {
