@@ -46,6 +46,10 @@ class ByteBuf {
         Array.prototype.push.apply(this.#buffer, array);
     }
 
+    write(array) {
+        Array.prototype.push.apply(this.#buffer, array);
+    }
+
     writeBool(value) {
         this.#buffer.push(value ? 1 : 0);
     }
