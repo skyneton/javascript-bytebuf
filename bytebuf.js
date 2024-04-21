@@ -86,6 +86,10 @@ class ByteBuf {
         return !!this.readByte();
     }
 
+    readUint8Array() {
+        return this.read(this.readVarInt());
+    }
+
     get length() {
         return this.#buffer.length;
     }
