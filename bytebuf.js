@@ -1,6 +1,6 @@
 class ByteBuf {
     #readBuffer;
-    #position = 0
+    #position = 0;
     #buffer = [];
     #encoder = new TextEncoder("utf-8");
     #decoder = new TextDecoder("utf-8");
